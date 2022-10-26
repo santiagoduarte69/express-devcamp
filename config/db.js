@@ -1,13 +1,13 @@
-const mongoose = require('mongoose')
-const url = 'mongodb://localhost:27017'
+const sequelize = require('./seq')
+const colors = require('colors')
 
-//Componente funcional 
 const connectDB = async () =>{
-    const conn = await mongoose.connect(url, {
-        useUnifiedTopology: true,
-        useNewUrlParser: true
-    })
-    console.log(conn.connection.host)
+    try{
+        await sequelize.authenticate()
+        console.log('Conectado a servidor mysql'.bgGreen.blue)
+    }catch(error){
+        console.log(error)
+    }
 }
 
-connectDB()
+module.exports = connectDB
