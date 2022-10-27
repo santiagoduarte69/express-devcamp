@@ -1,44 +1,65 @@
-exports.getAllBootcamps = (req, res)=>{
+const { DataTypes } = require('sequelize')
+const BootcampModel = require('../models/bootcamp')
+const sequelize = require('../config/seq')
+//Objeto User:
+const Bootcamp = BootcampModel(sequelize , DataTypes)
+
+exports.getAllBootcamps = async (req, res)=>{
+    const allBootcamps = await Bootcamp.findAll()
     res 
         .status(200)
         .json({
             "success" : true,
-            "data": `All bootcamps`
+            "data": allBootcamps
         })
 }
 
-exports.getSingleBootcamp = (req, res)=>{
+exports.getSingleBootcamp = async (req, res)=>{
+    const singleBootcamp = await Bootcamp.findByPk(req.params.id)
     res 
         .status(200)
         .json({
             "success" : true,
-            "data": `Single bootcamp ${req.params.id}`
+            "data": singleBootcamp
         })
 }
 
-exports.createBootcamp = (req , res)=>{
+exports.createBootcamp = async (req , res)=>{
+    const newBootcamp = await Bootcamp.create(req.body)
     res
         .status(201)
         .json({
             "success" : true,
-            "data": "Create bootcamp"
+            "data": newBootcamp
         })
 }
 
-exports.updateBootcamp = (req , res)=>{
+exports.updateBootcamp = async (req , res)=>{
+    const updateBootcamp = await Bootcamp.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    });
+    const singleBootcamp = await Bootcamp.findByPk(req.params.id)
     res 
         .status(200)
         .json({
             "success" : true,
-            "data": `Update bootcamp ${req.params.id}`
+            "data": singleBootcamp
         })
 }
 
-exports.deleteBootcamp = (req , res)=>{
+exports.deleteBootcamp = async (req , res)=>{
+    const singleBootcamp = await Bootcamp.findByPk(req.params.id)
+    await Bootcamp.destroy( {
+        where: {
+            id: req.params.id
+        }
+      });
     res 
         .status(200)
         .json({
             "success" : true,
-            "data": `Delete bootcamp: ${req.params.id}`
+            "data": singleBootcamp
         })
 }
