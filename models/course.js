@@ -14,11 +14,92 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Course.init({
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
-    weeks: DataTypes.INTEGER,
-    enroll_cost: DataTypes.DECIMAL,
-    minium_skill: DataTypes.STRING
+    title:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,validate:{
+        notEmpty:{
+          args: true,
+          msg: "Course no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "Course debe ser obligatorio"
+        }
+      }
+    },
+    description:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,validate:{
+        notEmpty:{
+          args: true,
+          msg: "Course no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "Course debe ser obligatorio"
+        }
+      }
+    },
+    weeks:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,validate:{
+        isInt:{
+          args: true,
+          msg: "Las semanas solo deben tener numeros"
+        },
+        max:{
+          args: true,
+          msg: "Las semanas solo pueden tener un digito"
+        },
+        notEmpty:{
+          args: true,
+          msg: "Course no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "Course debe ser obligatorio"
+        }
+      }
+    },
+    enroll_cost:{
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      unique: true,validate:{
+        isFloat:{
+          args: true,
+          msg: "Course debe ser de tipo float"
+        },
+        notEmpty:{
+          args: true,
+          msg: "Course no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "Course debe ser obligatorio"
+        }
+      }
+    },
+    minium_skill:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,validate:{
+        isAlpha:{
+          args: true,
+          msg: "Course solo debe tener letras"
+        },
+        notEmpty:{
+          args: true,
+          msg: "Course no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "Course debe ser obligatorio"
+        }
+      }
+    }
   }, {
     sequelize,
     timestamps: false,
