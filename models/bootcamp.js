@@ -14,12 +14,98 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Bootcamp.init({
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    website: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    average_rating: DataTypes.FLOAT,
-    average_cost: DataTypes.DECIMAL
+    name:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,validate:{
+        notEmpty:{
+          args: true,
+          msg: "Name no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "Name debe ser obligatorio"
+        }
+      }
+    },
+    description:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,validate:{
+        notEmpty:{
+          args: true,
+          msg: "description no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "description debe ser obligatorio"
+        }
+      }
+    },
+    website:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,validate:{
+        notEmpty:{
+          args: true,
+          msg: "website no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "website debe ser obligatorio"
+        }
+      }
+    },
+    phone:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,validate:{
+        notEmpty:{
+          args: true,
+          msg: "website no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "website debe ser obligatorio"
+        }
+      }
+    },
+    average_rating:{
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      unique: true,validate:{
+        isFloat:{
+          args: true,
+          msg: "average_rating debe ser de tipo float"
+        },
+        notEmpty:{
+          args: true,
+          msg: "average_rating no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "average_rating debe ser obligatorio"
+        }
+      }
+    },
+    average_cost:{
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      unique: true,validate:{
+        isFloat:{
+          args: true,
+          msg: "average_cost debe ser de tipo float"
+        },
+        notEmpty:{
+          args: true,
+          msg: "average_cost no debe estar vacio"
+        },
+        notNull:{
+          args: true,
+          msg: "average_cost debe ser obligatorio"
+        }
+      }
+    }
   }, {
     sequelize,
     timestamps: false,

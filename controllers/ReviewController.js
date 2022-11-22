@@ -1,3 +1,4 @@
+const { DataTypes, ValidationError } = require('sequelize')
 const { DataTypes } = require('sequelize')
 const ReviewModel = require('../models/review')
 const sequelize = require('../config/seq')
@@ -5,7 +6,21 @@ const sequelize = require('../config/seq')
 const Review = ReviewModel(sequelize , DataTypes)
 
 exports.getAllReviews = async (req, res)=>{
-    const allReviews = await Review.findAll()
+    try {
+        const allReviews = await Review.findAll()
+        res 
+            .status(200)
+            .json({
+                "success" : true,
+                "data": allReviews
+        })
+    } catch (error) {
+        res.status(400).json({
+            "success":false,
+            "error": "Error de servidor"
+        })
+    }
+    
     res 
         .status(200)
         .json({

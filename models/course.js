@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,validate:{
         notEmpty:{
           args: true,
-          msg: "Course no debe estar vacio"
+          msg: "title no debe estar vacio"
         },
         notNull:{
           args: true,
-          msg: "Course debe ser obligatorio"
+          msg: "title debe ser obligatorio"
         }
       }
     },
@@ -34,11 +34,11 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,validate:{
         notEmpty:{
           args: true,
-          msg: "Course no debe estar vacio"
+          msg: "description no debe estar vacio"
         },
         notNull:{
           args: true,
-          msg: "Course debe ser obligatorio"
+          msg: "description debe ser obligatorio"
         }
       }
     },
@@ -56,11 +56,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         notEmpty:{
           args: true,
-          msg: "Course no debe estar vacio"
+          msg: "weeks no debe estar vacio"
         },
         notNull:{
           args: true,
-          msg: "Course debe ser obligatorio"
+          msg: "weeks debe ser obligatorio"
         }
       }
     },
@@ -70,15 +70,15 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,validate:{
         isFloat:{
           args: true,
-          msg: "Course debe ser de tipo float"
+          msg: "enroll_cost debe ser de tipo float"
         },
         notEmpty:{
           args: true,
-          msg: "Course no debe estar vacio"
+          msg: "enroll_cost no debe estar vacio"
         },
         notNull:{
           args: true,
-          msg: "Course debe ser obligatorio"
+          msg: "enroll_cost debe ser obligatorio"
         }
       }
     },
@@ -88,15 +88,15 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,validate:{
         isAlpha:{
           args: true,
-          msg: "Course solo debe tener letras"
+          msg: "minium_skill solo debe tener letras"
         },
         notEmpty:{
           args: true,
-          msg: "Course no debe estar vacio"
+          msg: "minium_skill no debe estar vacio"
         },
         notNull:{
           args: true,
-          msg: "Course debe ser obligatorio"
+          msg: "minium_skill debe ser obligatorio"
         }
       }
     }
